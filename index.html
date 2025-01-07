@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransitEase - Route Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
+    <script src="routeVisualization.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Dhaka City Transit System</h1>
+    </header>
+    <main>
+        <section id="route-search">
+            <h2>Search Routes</h2>
+            <input type="text" id="source" placeholder="Enter starting location">
+            <input type="text" id="destination" placeholder="Enter destination">
+            <button id="visualize-route">Visualize Route</button>
+        </section>
+
+        <section id="map-container">
+            <h2>Route Map</h2>
+            <div id="map" style="width: 100%; height: 500px;"></div>
+        </section>
+
+        <section id="booking-form">
+            <h2>Book a Ticket</h2>
+            <form action="book.php" method="POST">
+                <label for="transit-type">Transit Type:</label>
+                <select id="transit-type" name="transit_type">
+                    <option value="bus">Bus</option>
+                    <option value="metro">Metro Rail</option>
+                </select>
+                <label for="start-stop">Starting Stop:</label>
+                <input type="text" id="start-stop" name="start_stop" required>
+                <label for="end-stop">Destination:</label>
+                <input type="text" id="end-stop" name="end_stop" required>
+                <button type="submit">Book Now</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Dhaka City Transit System</p>
+    </footer>
+</body>
+</html>
