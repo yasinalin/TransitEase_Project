@@ -1,0 +1,43 @@
+<section id="booking-form">
+    <h2>Book a Ticket</h2>
+    <form id="booking-form" action="book.php" method="POST">
+        <label for="route-id">Select Route:</label>
+        <select id="route-id" name="route_id" required>
+            <!-- Options will be dynamically populated -->
+        </select>
+
+        <label for="start-station">Starting Stop:</label>
+        <input type="text" id="start-station" name="start_station" required placeholder="Enter starting stop">
+
+        <label for="end-station">Destination Stop:</label>
+        <input type="text" id="end-station" name="end_station" required placeholder="Enter destination stop">
+
+        <label for="payment-method">Payment Method:</label>
+        <select id="payment-method" name="payment_method" required>
+            <option value="card">Card</option>
+            <option value="mobile_banking">Mobile Banking</option>
+        </select>
+
+        <button type="submit">Book Now</button>
+    </form>
+</section>
+
+<script>
+    // Fetch routes dynamically
+    document.addEventListener('DOMContentLoaded', async () => {
+        const routeSelect = document.getElementById('route-id');
+        try {
+            const response = await fetch('get_routes.php'); // Create this endpoint to return routes
+            const routes = await response.json();
+
+            routes.forEach(route => {
+                const option = document.createElement('option');
+                option.value = route.id;
+                option.textContent = `${route.route_name} (${route.type})`;
+                routeSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching routes:', error);
+        }
+    });
+</script>
